@@ -11,7 +11,6 @@ class BookImpl(
     name: String,
     id: Int,
     availability: Boolean,
-    position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN
 ) : LibraryItem(name, id, availability),
     Book,
     Readable,
@@ -43,7 +42,12 @@ class BookImpl(
             "$ANSI_GREEN*Книга $name $id взяли в читальный зал*$ANSI_RESET\n" +
                     "Книга \"$name\" ваша, не забудьте вернуть до закрытия\n"
         } else {
-            "Извините книгу \"$name\" уже взяли, можете посмотреть другие\n"
+            "Извините книгу \"$name\" нельзя получить, можете посмотреть другие\n" +
+                    when (position) {
+                        Position.IN_READING_ROOM -> "$ANSI_GREEN*Книгу забрали в читальный зал*$ANSI_RESET\n"
+                        Position.HOME -> "$ANSI_GREEN*Книгу забрали домой*$ANSI_RESET\n"
+                        else -> "$ANSI_GREEN*Кажется мы его потеряли...*$ANSI_RESET\n"
+                    }
         }
 
     override fun takeToHome(): String =
@@ -52,7 +56,12 @@ class BookImpl(
             "$ANSI_GREEN*Книга $name $id взяли домой*$ANSI_RESET\n" +
                     "Книга \"$name\" ваша, не забудьте вернуть в течение 30 дней\n"
         } else {
-            "Извините книгу \"$name\" уже взяли, можете посмотреть другие\n"
+            "Извините книгу \"$name\" нельзя получить, можете посмотреть другие\n" +
+                    when (position) {
+                        Position.IN_READING_ROOM -> "$ANSI_GREEN*Книгу забрали в читальный зал*$ANSI_RESET\n"
+                        Position.HOME -> "$ANSI_GREEN*Книгу забрали домой*$ANSI_RESET\n"
+                        else -> "$ANSI_GREEN*Кажется мы его потеряли...*$ANSI_RESET\n"
+                    }
         }
 
 

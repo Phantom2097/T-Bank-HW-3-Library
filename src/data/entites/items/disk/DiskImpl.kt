@@ -9,8 +9,7 @@ import presentation.colors.Colors.ANSI_RESET
 class DiskImpl(
     name: String,
     id: Int,
-    availability: Boolean,
-    position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN
+    availability: Boolean
 ) : LibraryItem(name, id, availability),
     Disk,
     Takeable {
@@ -40,7 +39,11 @@ class DiskImpl(
             "$ANSI_GREEN*Диск $name $id взяли домой*$ANSI_RESET\n" +
                     "Диск \"$name\" ваш, не забудьте вернуть в течение 30 дней\n"
         } else {
-            "Извините диск \"$name\" уже взяли, можете посмотреть другие\n"
+            "Извините диск \"$name\" нельзя получить, можете посмотреть другие\n" +
+                    when (position) {
+                        Position.HOME -> "$ANSI_GREEN*Диск забрали домой*$ANSI_RESET\n"
+                        else -> "$ANSI_GREEN*Кажется мы его потеряли...*$ANSI_RESET\n"
+                    }
         }
 
     override fun toString(): String {

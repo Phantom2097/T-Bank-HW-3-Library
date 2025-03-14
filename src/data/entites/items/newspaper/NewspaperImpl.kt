@@ -10,7 +10,6 @@ class NewspaperImpl(
     name: String,
     id: Int,
     availability: Boolean,
-    position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN
 ) : LibraryItem(name, id, availability),
     Newspaper,
     Readable {
@@ -28,17 +27,21 @@ class NewspaperImpl(
     override fun readInTheReadingRoom(): String =
         if (availability) {
             availability = false
-            "$ANSI_GREEN*Диск $name $id взяли в читальный зал*$ANSI_RESET\n" +
+            "$ANSI_GREEN*Газета $name выпуск $issueNumber $id взяли в читальный зал*$ANSI_RESET\n" +
                     "Газета \"$name\" ваша, не забудьте вернуть до закрытия\n"
         } else {
-            "Извините газету \"$name\" уже взяли, можете посмотреть другие\n"
+            "Извините газету \"$name\" нельзя получить, можете посмотреть другие\n" +
+                    when (position) {
+                        Position.IN_READING_ROOM -> "$ANSI_GREEN*Газету взяли в читальный зал*$ANSI_RESET\n"
+                        else -> "$ANSI_GREEN*Кажется мы её потеряли...*$ANSI_RESET\n"
+                    }
         }
 
 
     override fun returnInLibrary(): String =
         if (!availability) {
             availability = true
-            "$ANSI_GREEN*Газета $name $id возвращена домой*$ANSI_RESET\n" +
+            "$ANSI_GREEN*Газета $name выпуск $issueNumber $id вернули в библиотеку*$ANSI_RESET\n" +
                     "Газета \"$name\" возвращена\n"
         } else {
             "Газету \"$name\" не нужно возвращать, она всё ещё в библиотеке\n"
