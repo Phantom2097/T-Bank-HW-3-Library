@@ -11,7 +11,7 @@ class DiskImpl(
     id: Int,
     availability: Boolean = true,
     position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN
-) : LibraryItem(name, id, availability),
+) : LibraryItem(name, id, availability, position),
     Disk,
     Takeable {
     override var type: String? = null
@@ -24,6 +24,7 @@ class DiskImpl(
 
     override fun fullInformation(): String = this.toString()
 
+    // Возврат в библиотеку
     override fun returnInLibrary(): String =
         if (!availability) {
             availability = true
@@ -33,7 +34,7 @@ class DiskImpl(
             "Диск \"$name\" не нужно возвращать, он всё ещё в библиотеке\n"
         }
 
-
+    // Взять домой
     override fun takeToHome(): String =
         if (availability) {
             availability = false

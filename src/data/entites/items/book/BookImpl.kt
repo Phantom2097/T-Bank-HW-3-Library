@@ -12,12 +12,12 @@ class BookImpl(
     id: Int,
     availability: Boolean = true,
     position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN
-) : LibraryItem(name, id, availability),
+) : LibraryItem(name, id, availability, position),
     Book,
     Readable,
     Takeable {
 
-    override var author: String = ""
+    override var author: String = " "
     override var numberOfPages: Int? = null
 
     // Вывод информации
@@ -28,6 +28,7 @@ class BookImpl(
 
     override fun fullInformation(): String = this.toString()
 
+    // Возврат в библиотеку
     override fun returnInLibrary(): String =
         if (!availability) {
             availability = true
@@ -37,6 +38,7 @@ class BookImpl(
             "Книгу \"$name\" не нужно возвращать, она всё ещё в библиотеке\n"
         }
 
+    // Читать в читальном зале
     override fun readInTheReadingRoom(): String =
         if (availability) {
             availability = false
@@ -51,6 +53,7 @@ class BookImpl(
                     }
         }
 
+    // Взять домой
     override fun takeToHome(): String =
         if (availability) {
             availability = false

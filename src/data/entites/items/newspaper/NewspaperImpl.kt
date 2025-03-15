@@ -11,7 +11,7 @@ class NewspaperImpl(
     id: Int,
     availability: Boolean = true,
     position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN
-) : LibraryItem(name, id, availability),
+) : LibraryItem(name, id, availability, position),
     Newspaper,
     Readable {
 
@@ -25,6 +25,7 @@ class NewspaperImpl(
 
     override fun fullInformation(): String = this.toString()
 
+    // Читать в читальном зале
     override fun readInTheReadingRoom(): String =
         if (availability) {
             availability = false
@@ -39,6 +40,7 @@ class NewspaperImpl(
         }
 
 
+    // Возврат в библиотеку
     override fun returnInLibrary(): String =
         if (!availability) {
             availability = true
