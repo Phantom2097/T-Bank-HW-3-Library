@@ -1,5 +1,5 @@
 package data.entites.items.newspaper
 
-interface Newspaper {
+internal interface Newspaper {
     var issueNumber: Int?
 }

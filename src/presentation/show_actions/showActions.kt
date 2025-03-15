@@ -7,7 +7,7 @@ import presentation.colors.Colors.ANSI_CYAN
 import presentation.colors.Colors.ANSI_RESET
 import presentation.colors.Colors.ANSI_YELLOW
 
-fun <T : LibraryItem> showActions(num: Int, items: List<T>): Boolean {
+internal fun <T : LibraryItem> showActions(num: Int, items: List<T>): Boolean {
     if ((num <= 0 || num > items.size)) {
         println(ANSI_YELLOW + "Неверный порядковый номер\n" + ANSI_CYAN + "\tПопробуйте ещё раз\n" + ANSI_RESET)
         return false

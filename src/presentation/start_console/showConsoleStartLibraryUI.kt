@@ -4,7 +4,7 @@ import presentation.colors.Colors.ANSI_RESET
 import presentation.colors.Colors.ANSI_YELLOW
 import presentation.main.printLibraryItems
 
-fun showConsoleStartLibraryUI() {
+internal fun showConsoleStartLibraryUI() {
     while (true) {
         textForShowLibraryItems()
 
@@ -16,7 +16,7 @@ fun showConsoleStartLibraryUI() {
 private fun textForShowLibraryItems() {
     println(
         """
-            Введите какой тип элемента библиотеки вы хотите посмотреть
+            Введите число, чтобы посмотреть соответствующую подборку в библиотеке
                 1 - Посмотреть книги
                 2 - Посмотреть газеты
                 3 - Посмотреть диски

@@ -9,7 +9,8 @@ import presentation.colors.Colors.ANSI_RESET
 class NewspaperImpl(
     name: String,
     id: Int,
-    availability: Boolean,
+    availability: Boolean = true,
+    position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN
 ) : LibraryItem(name, id, availability),
     Newspaper,
     Readable {
@@ -19,7 +20,7 @@ class NewspaperImpl(
     // Вывод информации
     override fun briefInformation(): String {
         val tempAvailability = if (availability) "Да" else "Нет"
-        return "Газета $name доступна: $tempAvailability"
+        return "Газета $name выпуск ${issueNumber ?: "*неизвестно*"} доступна: $tempAvailability"
     }
 
     override fun fullInformation(): String = this.toString()
@@ -27,7 +28,7 @@ class NewspaperImpl(
     override fun readInTheReadingRoom(): String =
         if (availability) {
             availability = false
-            "$ANSI_GREEN*Газета $name выпуск $issueNumber $id взяли в читальный зал*$ANSI_RESET\n" +
+            "$ANSI_GREEN*Газета $name выпуск ${issueNumber ?: "*неизвестно*"} id: $id взяли в читальный зал*$ANSI_RESET\n" +
                     "Газета \"$name\" ваша, не забудьте вернуть до закрытия\n"
         } else {
             "Извините газету \"$name\" нельзя получить, можете посмотреть другие\n" +
@@ -41,7 +42,7 @@ class NewspaperImpl(
     override fun returnInLibrary(): String =
         if (!availability) {
             availability = true
-            "$ANSI_GREEN*Газета $name выпуск $issueNumber $id вернули в библиотеку*$ANSI_RESET\n" +
+            "$ANSI_GREEN*Газета $name выпуск ${issueNumber ?: "*неизвестно*"} id: $id вернули в библиотеку*$ANSI_RESET\n" +
                     "Газета \"$name\" возвращена\n"
         } else {
             "Газету \"$name\" не нужно возвращать, она всё ещё в библиотеке\n"
@@ -50,7 +51,7 @@ class NewspaperImpl(
 
     override fun toString(): String {
         val tempAvailability = if (availability) "Да" else "Нет"
-        return "Выпуск: $issueNumber газеты $name с id: $id доступен: $tempAvailability\n"
+        return "Выпуск: ${issueNumber ?: "*неизвестно*"} газеты $name с id: $id доступен: $tempAvailability\n"
     }
 }
 

@@ -9,7 +9,9 @@ abstract class LibraryItem(
     val id: Int,
     var availability: Boolean = true,
     var position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN
-) : Readable, Takeable {
+) : Readable,
+    Takeable {
+
     open fun briefInformation(): String {
         val tempAvailability = if (availability) "Да" else "Нет"
         return "$name доступно: $tempAvailability"

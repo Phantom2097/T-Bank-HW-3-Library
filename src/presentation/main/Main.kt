@@ -4,6 +4,7 @@ import data.ItemsInLibrary.addItemBook
 import data.ItemsInLibrary.addItemDisk
 import data.ItemsInLibrary.addItemNewspaper
 import data.ItemsInLibrary.getItemsCounter
+import data.Position
 import data.entites.items.book.BookImpl
 import data.entites.items.disk.DiskImpl
 import data.entites.items.newspaper.NewspaperImpl
@@ -18,7 +19,7 @@ fun main() {
 }
 
 
-fun createBooks() {
+private fun createBooks() {
     addItemBook(
         BookImpl(
             name = "Котлин для профессионалов",
@@ -37,14 +38,49 @@ fun createBooks() {
             author = "Джозеф Киплинг"
             numberOfPages = 202
         })
+    addItemBook(
+        BookImpl(
+            name = "Kotlin Design Patterns and Best Practices",
+            id = getItemsCounter(),
+            availability = false,
+            position = Position.IN_READING_ROOM
+        ).apply {
+            author = "Alexey Soshin, Anton Arhipov"
+            numberOfPages = 356
+        })
+    addItemBook(
+        BookImpl(
+            name = "Евгений Онегин",
+            id = getItemsCounter(),
+            availability = false,
+            position = Position.HOME
+        ).apply {
+            author = "Пушкин А.С."
+            numberOfPages = 320
+        })
+    addItemBook(
+        BookImpl(
+            name = "Алые Плинтуса",
+            id = getItemsCounter(),
+            availability = true
+        ).apply {
+            author = "Саша Зелёный"
+        })
+    addItemBook(
+        BookImpl(
+            name = "Война и привет",
+            id = getItemsCounter(),
+            availability = true
+        ))
 }
 
-fun createNewspapers() {
+private fun createNewspapers() {
     addItemNewspaper(
         NewspaperImpl(
             name = "Русская правда",
             id = getItemsCounter(),
             availability = false,
+            position = Position.IN_READING_ROOM
         ).apply {
             issueNumber = 794
         })
@@ -64,9 +100,15 @@ fun createNewspapers() {
         ).apply {
             issueNumber = 796
         })
+    addItemNewspaper(
+        NewspaperImpl(
+            name = "Русская ложь",
+            id = getItemsCounter(),
+            availability = true,
+        ))
 }
 
-fun createDisks() {
+private fun createDisks() {
     addItemDisk(
         DiskImpl(
             name = "Дэдпул и Росомаха",
@@ -90,6 +132,7 @@ fun createDisks() {
             name = "Просто диск",
             id = getItemsCounter(),
             availability = false,
+            position = Position.HOME
         )
     )
 }

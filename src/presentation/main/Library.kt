@@ -8,7 +8,7 @@ import presentation.colors.Colors.ANSI_YELLOW
 import presentation.show_items.showItemsInLibrary
 
 
-fun printLibraryItems(itemsType: Int) = when (itemsType) {
+internal fun printLibraryItems(itemsType: Int) = when (itemsType) {
     1 -> showItemsInLibrary(getBooksInLibrary())
     2 -> showItemsInLibrary(getNewspapersInLibrary())
     3 -> showItemsInLibrary(getDisksInLibrary())

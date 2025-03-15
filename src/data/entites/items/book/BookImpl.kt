@@ -10,13 +10,14 @@ import presentation.colors.Colors.ANSI_RESET
 class BookImpl(
     name: String,
     id: Int,
-    availability: Boolean,
+    availability: Boolean = true,
+    position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN
 ) : LibraryItem(name, id, availability),
     Book,
     Readable,
     Takeable {
 
-    override lateinit var author: String
+    override var author: String = ""
     override var numberOfPages: Int? = null
 
     // Вывод информации
@@ -30,7 +31,7 @@ class BookImpl(
     override fun returnInLibrary(): String =
         if (!availability) {
             availability = true
-            "$ANSI_GREEN*Книга $name $id возвращена в библиотеку*$ANSI_RESET\n" +
+            "$ANSI_GREEN*Книга $name id: $id возвращена в библиотеку*$ANSI_RESET\n" +
                     "Книга \"$name\" возвращена, спасибо\n"
         } else {
             "Книгу \"$name\" не нужно возвращать, она всё ещё в библиотеке\n"
@@ -39,7 +40,7 @@ class BookImpl(
     override fun readInTheReadingRoom(): String =
         if (availability) {
             availability = false
-            "$ANSI_GREEN*Книга $name $id взяли в читальный зал*$ANSI_RESET\n" +
+            "$ANSI_GREEN*Книга $name id: $id взяли в читальный зал*$ANSI_RESET\n" +
                     "Книга \"$name\" ваша, не забудьте вернуть до закрытия\n"
         } else {
             "Извините книгу \"$name\" нельзя получить, можете посмотреть другие\n" +
@@ -53,7 +54,7 @@ class BookImpl(
     override fun takeToHome(): String =
         if (availability) {
             availability = false
-            "$ANSI_GREEN*Книга $name $id взяли домой*$ANSI_RESET\n" +
+            "$ANSI_GREEN*Книга $name id: $id взяли домой*$ANSI_RESET\n" +
                     "Книга \"$name\" ваша, не забудьте вернуть в течение 30 дней\n"
         } else {
             "Извините книгу \"$name\" нельзя получить, можете посмотреть другие\n" +
@@ -67,7 +68,7 @@ class BookImpl(
 
     override fun toString(): String {
         val tempAvailability = if (availability) "Да" else "Нет"
-        val tempNumberOfPages = if (numberOfPages != -1) numberOfPages.toString() else "*неизвестно*"
+        val tempNumberOfPages = if ((numberOfPages ?: -1) != -1) numberOfPages.toString() else "*неизвестно*"
         val tempAuthor = author.ifBlank { "*неизвестно*" }
         return "Книга: $name ($tempNumberOfPages стр.) автора: $tempAuthor с id: $id доступна: $tempAvailability\n"
     }
