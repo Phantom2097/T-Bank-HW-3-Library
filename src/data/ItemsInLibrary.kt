@@ -21,6 +21,8 @@ object ItemsInLibrary {
         println(ANSI_RED + "На данный момент в библиотеке нет ни одной книги 🤷‍♂️\n" + ANSI_RESET)
         emptyList()
     }
+//    fun setAvailabilityBook(id: Int, availability: Boolean) { _booksMap[id].availability = availability }
+//    fun setBookPosition(num: Int, position: Position) { _booksList[num].position = position }
 
     // Newspaper
     fun addItemNewspaper(newspaper: NewspaperImpl) { _newspapersList.add(newspaper) }
@@ -28,6 +30,8 @@ object ItemsInLibrary {
         println(ANSI_RED + "На данный момент в библиотеке нет ни одной газеты 🤷‍♂️\n" + ANSI_RESET)
         emptyList()
     }
+//    fun setAvailabilityNewspaper(id: Int, availability: Boolean) { _newspapersMap[id].availability = availability }
+//    fun setNewspaperPosition(num: Int, position: Position) { _newspapersList[num].position = position }
 
     // Disk
     fun addItemDisk(disk: DiskImpl) { _disksList.add(disk) }
@@ -35,6 +39,8 @@ object ItemsInLibrary {
         println(ANSI_RED + "На данный момент в библиотеке нет ни одного диска 🤷‍♂️\n" + ANSI_RESET)
         emptyList()
     }
+//    fun setAvailabilityDisk(id: Int, availability: Boolean) { _disksList[id].availability = availability }
+//    fun setDiskPosition(num: Int, position: Position) { _disksList[num].position = position }
 
     // ItemsCounter
     fun getItemsCounter() = itemsCounter++
