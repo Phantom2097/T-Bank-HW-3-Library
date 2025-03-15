@@ -8,7 +8,7 @@ import presentation.colors.Colors.ANSI_GREEN
 import presentation.colors.Colors.ANSI_RESET
 
 class BookImpl(
-    name: String,
+    name: Any,
     id: Int,
     availability: Boolean = true,
     position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN

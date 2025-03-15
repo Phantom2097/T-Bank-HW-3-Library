@@ -135,4 +135,13 @@ private fun createDisks() {
             position = Position.HOME
         )
     )
+
+    addItemDisk(
+        DiskImpl(
+            name = 1111,
+            id = getItemsCounter(),
+            availability = false,
+            position = Position.HOME
+        )
+    )
 }

@@ -5,7 +5,7 @@ import data.entites.Readable
 import data.entites.Takeable
 
 abstract class LibraryItem(
-    val name: String,
+    val name: Any,
     val id: Int,
     var availability: Boolean = true,
     var position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN

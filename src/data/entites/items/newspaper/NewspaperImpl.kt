@@ -7,7 +7,7 @@ import presentation.colors.Colors.ANSI_GREEN
 import presentation.colors.Colors.ANSI_RESET
 
 class NewspaperImpl(
-    name: String,
+    name: Any,
     id: Int,
     availability: Boolean = true,
     position: Position = if (availability) Position.LIBRARY else Position.UNKNOWN
@@ -20,7 +20,7 @@ class NewspaperImpl(
     // Вывод информации
     override fun briefInformation(): String {
         val tempAvailability = if (availability) "Да" else "Нет"
-        return "Газета $name выпуск ${issueNumber ?: "*неизвестно*"} доступна: $tempAvailability"
+        return "Газета $name выпуск ${issueNumber ?: "*неизвестно*"} доступна: $tempAvailability" // Без выпуска не особо понятно, какая это газета
     }
 
     override fun fullInformation(): String = this.toString()
