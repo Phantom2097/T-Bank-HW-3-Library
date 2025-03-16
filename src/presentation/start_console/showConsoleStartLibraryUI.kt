@@ -28,9 +28,10 @@ private fun textForShowLibraryItems() {
 private fun actionSelection(method: (Int) -> Unit): Boolean {
     return when (val elementType = readlnOrNull()?.toIntOrNull()) {
         null -> {
-            println(ANSI_YELLOW +"Попробуйте ещё раз\n" + ANSI_RESET)
+            println(ANSI_YELLOW + "Попробуйте ещё раз\n" + ANSI_RESET)
             false
         }
+
         4 -> true
         else -> {
             method(elementType)

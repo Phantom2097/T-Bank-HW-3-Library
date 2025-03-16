@@ -1,11 +1,12 @@
 package presentation.show_items
 
-import data.entites.items.LibraryItem
+import data.entites.Readable
+import data.entites.Showable
 import presentation.colors.Colors.ANSI_BLUE
 import presentation.colors.Colors.ANSI_RESET
 import presentation.show_actions.showActions
 
-fun <T : LibraryItem>showItemsInLibrary(items: List<T>) {
+fun <T> showItemsInLibrary(items: List<T>) where T : Showable, T : Readable {
     if (items.isEmpty()) return
 
     items.apply {
