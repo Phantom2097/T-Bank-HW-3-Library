@@ -2,12 +2,13 @@ package presentation.show_actions
 
 import data.ItemsInLibrary.setPosition
 import data.Position
-import data.entites.items.LibraryItem
+import data.entites.Readable
+import data.entites.Showable
 import presentation.colors.Colors.ANSI_CYAN
 import presentation.colors.Colors.ANSI_RESET
 import presentation.colors.Colors.ANSI_YELLOW
 
-internal fun <T : LibraryItem> showActions(num: Int, items: List<T>): Boolean {
+internal fun <T> showActions(num: Int, items: List<T>): Boolean where T : Readable, T : Showable {
     if ((num <= 0 || num > items.size)) {
         println(ANSI_YELLOW + "Неверный порядковый номер\n" + ANSI_CYAN + "\tПопробуйте ещё раз\n" + ANSI_RESET)
         return false
@@ -22,7 +23,7 @@ internal fun <T : LibraryItem> showActions(num: Int, items: List<T>): Boolean {
     }
 }
 
-private fun <T : LibraryItem> selectAction(currentItem: T, num: Int): Boolean? {
+private fun <T> selectAction(currentItem: T, num: Int): Boolean? where T : Showable, T : Readable {
     currentItem.apply {
         when (readlnOrNull()?.toIntOrNull() ?: -1) {
             1 -> {
