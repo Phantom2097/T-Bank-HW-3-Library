@@ -24,7 +24,6 @@ fun <T> showItemsInLibrary(items: List<T>) where T : Showable, T : Readable {
 
             val exit = showActions(num, this)
             if (exit) return
-            else continue
         }
     }
 }

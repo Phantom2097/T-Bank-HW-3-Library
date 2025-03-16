@@ -1,7 +1,5 @@
 package presentation.show_actions
 
-import data.ItemsInLibrary.setPosition
-import data.Position
 import data.entites.Readable
 import data.entites.Showable
 import presentation.colors.Colors.ANSI_CYAN
@@ -18,40 +16,9 @@ internal fun <T> showActions(num: Int, items: List<T>): Boolean where T : Readab
     while (true) {
         showActionsList()
 
-        val exit = selectAction(currentItem, num) ?: continue
+        val exit = selectAction(currentItem) ?: continue
         return exit
     }
-}
-
-private fun <T> selectAction(currentItem: T, num: Int): Boolean? where T : Showable, T : Readable {
-    currentItem.apply {
-        when (readlnOrNull()?.toIntOrNull() ?: -1) {
-            1 -> {
-                println(takeToHome())
-                setPosition(num - 1, Position.HOME, currentItem)
-                return false
-            }
-            2 -> {
-                println(readInTheReadingRoom())
-                setPosition(num - 1, Position.IN_READING_ROOM, currentItem)
-                return false
-            }
-            3 -> println(fullInformation())
-            4 -> {
-                println(returnInLibrary())
-                setPosition(num - 1, Position.LIBRARY, currentItem)
-                return false
-            }
-            5 -> println(briefInformation() + "\n")
-            6 -> return false
-            7 -> return true
-            else -> {
-                println(ANSI_YELLOW + "Неизвестная команда\n" + ANSI_CYAN + "\tПопробуйте ещё раз\n" + ANSI_RESET)
-                return@apply
-            }
-        }
-    }
-    return null
 }
 
 private fun showActionsList() {

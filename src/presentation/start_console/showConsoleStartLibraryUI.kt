@@ -1,14 +1,13 @@
 package presentation.start_console
 
-import presentation.colors.Colors.ANSI_RESET
-import presentation.colors.Colors.ANSI_YELLOW
-import presentation.main.printLibraryItems
+import presentation.show_items.printLibraryItems
+
 
 internal fun showConsoleStartLibraryUI() {
     while (true) {
         textForShowLibraryItems()
 
-        val exit = actionSelection(::printLibraryItems)
+        val exit = selectLibrarySelection(::printLibraryItems)
         if (exit) return
     }
 }
@@ -25,17 +24,3 @@ private fun textForShowLibraryItems() {
     )
 }
 
-private fun actionSelection(method: (Int) -> Unit): Boolean {
-    return when (val elementType = readlnOrNull()?.toIntOrNull()) {
-        null -> {
-            println(ANSI_YELLOW + "Попробуйте ещё раз\n" + ANSI_RESET)
-            false
-        }
-
-        4 -> true
-        else -> {
-            method(elementType)
-            false
-        }
-    }
-}
