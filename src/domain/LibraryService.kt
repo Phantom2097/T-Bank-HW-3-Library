@@ -1,5 +1,6 @@
-package data
+package domain
 
+import data.Position
 import data.entites.items.LibraryItem
 
 class LibraryService {

@@ -11,8 +11,8 @@ internal fun selectLibrarySelection(method: MethodType): Boolean {
             println(ANSI_YELLOW + "Попробуйте ещё раз\n" + ANSI_RESET)
             false
         }
-
-        4 -> true
+        4 -> TODO("Сделать реализацию Магазина и менеджера")
+        5 -> true
         else -> {
             method(elementType)
             false

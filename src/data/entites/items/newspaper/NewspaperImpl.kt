@@ -1,6 +1,6 @@
 package data.entites.items.newspaper
 
-import data.LibraryService
+import domain.LibraryService
 import data.Position
 import data.entites.Readable
 import data.entites.Showable
@@ -8,7 +8,7 @@ import data.entites.items.LibraryItem
 import presentation.colors.Colors.ANSI_GREEN
 import presentation.colors.Colors.ANSI_RESET
 
-class NewspaperImpl(
+open class NewspaperImpl(
     private val item: LibraryItem,
     private val libraryService: LibraryService
 ) :

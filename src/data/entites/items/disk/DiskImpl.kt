@@ -1,6 +1,6 @@
 package data.entites.items.disk
 
-import data.LibraryService
+import domain.LibraryService
 import data.Position
 import data.entites.Showable
 import data.entites.Readable
