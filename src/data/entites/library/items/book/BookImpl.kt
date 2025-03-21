@@ -1,10 +1,10 @@
-package data.entites.items.book
+package data.entites.library.items.book
 
-import data.LibraryService
+import domain.LibraryService
 import data.Position
-import data.entites.Readable
-import data.entites.Showable
-import data.entites.items.LibraryItem
+import data.entites.library.Readable
+import data.entites.library.Showable
+import data.entites.library.items.LibraryItem
 import presentation.colors.Colors.ANSI_GREEN
 import presentation.colors.Colors.ANSI_RESET
 

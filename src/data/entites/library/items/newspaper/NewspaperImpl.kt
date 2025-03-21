@@ -1,14 +1,14 @@
-package data.entites.items.newspaper
+package data.entites.library.items.newspaper
 
-import data.LibraryService
+import domain.LibraryService
 import data.Position
-import data.entites.Readable
-import data.entites.Showable
-import data.entites.items.LibraryItem
+import data.entites.library.Readable
+import data.entites.library.Showable
+import data.entites.library.items.LibraryItem
 import presentation.colors.Colors.ANSI_GREEN
 import presentation.colors.Colors.ANSI_RESET
 
-class NewspaperImpl(
+open class NewspaperImpl(
     private val item: LibraryItem,
     private val libraryService: LibraryService
 ) :

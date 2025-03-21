@@ -1,4 +1,4 @@
-package data.entites.items.book
+package data.entites.library.items.book
 
 interface Book {
     var author: String
