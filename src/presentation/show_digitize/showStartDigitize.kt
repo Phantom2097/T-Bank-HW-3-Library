@@ -8,6 +8,7 @@ fun showStartDigitize() {
     while (true) {
         textForShowStartDigitize()
 
+
         val num = getDigitizeType()
 
         if (num == -1) {
@@ -16,12 +17,12 @@ fun showStartDigitize() {
             continue
         }
 
-        goToDigitize(num)
-        return
+        val exit = goToDigitize(num)
+        if (exit) return
     }
 }
 
-fun getDigitizeType(): Int {
+private fun getDigitizeType(): Int {
     return readlnOrNull()?.toIntOrNull() ?: -1
 }
 
@@ -30,6 +31,7 @@ private fun textForShowStartDigitize() {
         Выберите что хотите оцифровать
             1 - Книги
             2 - Газеты
-            3 - Выйти в главное меню
+            3 - Показать оцифрованные предметы
+            4 - Выйти в главное меню
     """.trimIndent())
 }

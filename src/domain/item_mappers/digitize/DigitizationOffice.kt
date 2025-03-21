@@ -8,10 +8,18 @@ import presentation.colors.Colors.ANSI_PURPLE
 import presentation.colors.Colors.ANSI_RESET
 
 sealed interface DigitizationOffice {
-    class DigitalItem(val item: Showable, private val type: String? = "CD"    ) {
+    data class DigitalItem(val item: Showable, private val type: String? = "CD"): Showable {
+        override fun briefInformation(): String {
+            return item.briefInformation() + ANSI_PURPLE + "\n\t\t**Оцифрована на CD**" + ANSI_RESET
+        }
+
+        override fun fullInformation(): String {
+            return this.toString()
+        }
+
         override fun toString(): String {
-            return "\nОцифрованный предмет библиотеки, тип диска $type:\n" +
-                    ANSI_PURPLE + item.fullInformation() + ANSI_RESET
+            return ANSI_PURPLE + "Оцифрованный предмет библиотеки, тип диска $type:\n" + ANSI_RESET +
+                    item.fullInformation()
         }
     }
     class DigitizeBook(

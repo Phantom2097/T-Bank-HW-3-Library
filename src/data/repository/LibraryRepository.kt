@@ -3,6 +3,7 @@ package data.repository
 import data.entites.library.items.book.BookImpl
 import data.entites.library.items.disk.DiskImpl
 import data.entites.library.items.newspaper.NewspaperImpl
+import domain.item_mappers.digitize.DigitizationOffice
 import presentation.colors.Colors.ANSI_CYAN
 import presentation.colors.Colors.ANSI_RED
 import presentation.colors.Colors.ANSI_RESET
@@ -12,6 +13,9 @@ object LibraryRepository {
     private val _booksList by lazy { mutableListOf<BookImpl>() }
     private val _disksList by lazy { mutableListOf<DiskImpl>() }
     private val _newspapersList by lazy { mutableListOf<NewspaperImpl>() }
+
+    // Оцифрованные предметы
+    private val _digitizeSet by lazy { LibraryDigitizeMutableSet<DigitizationOffice.DigitalItem>() }
 
     private var itemsCounter = 0
 
@@ -41,6 +45,7 @@ object LibraryRepository {
             is BookImpl -> _booksList.add(item)
             is NewspaperImpl-> _newspapersList.add(item)
             is DiskImpl -> _disksList.add(item)
+            is DigitizationOffice.DigitalItem -> _digitizeSet.add(item)
             else -> {
                 println(ANSI_RED + "Подборки для этого предмета в библиотеке нет!!!" + ANSI_RESET)
             }
@@ -56,4 +61,9 @@ object LibraryRepository {
 
     // ItemsCounter
     fun getItemsCounter() = itemsCounter++
+
+    fun getDigitizeItems(): List<DigitizationOffice.DigitalItem> = _digitizeSet.toList().ifEmpty {
+        println(ANSI_RED + "На данный момент в библиотеке нет ни одного оцифрованного предмета 🤷‍♂️\n" + ANSI_RESET)
+        emptyList()
+    }
 }

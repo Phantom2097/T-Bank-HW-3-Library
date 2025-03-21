@@ -18,5 +18,4 @@ inline fun <reified LibraryType: Showable>selectItemForDigitize(getItems: () -> 
             return item
         }
     }
-
 }

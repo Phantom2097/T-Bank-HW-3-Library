@@ -13,10 +13,12 @@ internal fun selectLibrarySelection(method: MethodType): Boolean {
             println(ANSI_YELLOW + "Попробуйте ещё раз\n" + ANSI_RESET)
             false
         }
+        // Покпка менеджером товаров в соотв. магазине
         4 -> {
             showShops()
             false
         }
+        //  Оцифровка предметов
         5 -> {
             showStartDigitize()
             false
