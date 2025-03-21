@@ -1,7 +1,7 @@
 package domain
 
 import data.Position
-import data.entites.items.LibraryItem
+import data.entites.library.items.LibraryItem
 
 class LibraryService {
 
@@ -11,10 +11,10 @@ class LibraryService {
     }
     // Изменение доступности
     fun setAvailability(newAvailability: Boolean, item: LibraryItem): Boolean {
-        if (newAvailability != item.availability) {
+        return newAvailability != item.availability.also {
             item.availability = newAvailability
-            return true
         }
-        return false
     }
+
+
 }

@@ -2,6 +2,8 @@ package presentation.start_console
 
 import presentation.colors.Colors.ANSI_RESET
 import presentation.colors.Colors.ANSI_YELLOW
+import presentation.show_digitize.showStartDigitize
+import presentation.show_manager.showShops
 
 private typealias MethodType = (Int) -> Unit
 
@@ -11,8 +13,15 @@ internal fun selectLibrarySelection(method: MethodType): Boolean {
             println(ANSI_YELLOW + "Попробуйте ещё раз\n" + ANSI_RESET)
             false
         }
-        4 -> TODO("Сделать реализацию Магазина и менеджера")
-        5 -> true
+        4 -> {
+            showShops()
+            false
+        }
+        5 -> {
+            showStartDigitize()
+            false
+        }
+        6 -> true
         else -> {
             method(elementType)
             false

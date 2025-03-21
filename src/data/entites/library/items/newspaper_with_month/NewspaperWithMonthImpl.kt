@@ -1,9 +1,11 @@
-package data.entites.items.newspaper_with_month
+package data.entites.library.items.newspaper_with_month
 
 import domain.LibraryService
-import data.entites.items.LibraryItem
-import data.entites.items.newspaper.NewspaperImpl
-import data.entites.items.newspaper_with_month.Month.UNKNOWN
+import data.entites.library.items.LibraryItem
+import data.entites.library.items.newspaper.NewspaperImpl
+import data.entites.library.items.newspaper_with_month.Month.UNKNOWN
+import presentation.colors.Colors.ANSI_BLUE
+import presentation.colors.Colors.ANSI_RESET
 
 class NewspaperWithMonthImpl(
     private val item: LibraryItem,
@@ -19,6 +21,8 @@ class NewspaperWithMonthImpl(
         val tempAvailability = if (item.availability) "Да" else "Нет"
         val tempMonth = issueMonth.getMonth()
         val tempIssueNumber = issueNumber ?: "*неизвестно*"
-        return "Выпуск: $tempIssueNumber газеты ${item.name} за $tempMonth с id: ${item.id} доступен: $tempAvailability\n"
+        return "Выпуск: $tempIssueNumber газеты ${item.name}" +
+                ANSI_BLUE + " за $tempMonth" + ANSI_RESET +
+                " с id: ${item.id} доступен: $tempAvailability\n"
     }
 }

@@ -1,17 +1,17 @@
 package presentation.main
 
-import data.LibraryRepository.addItemBook
-import data.LibraryRepository.addItemDisk
-import data.LibraryRepository.addItemNewspaper
-import data.LibraryRepository.getItemsCounter
+import data.repository.LibraryRepository.addItemBook
+import data.repository.LibraryRepository.addItemDisk
+import data.repository.LibraryRepository.addItemNewspaper
+import data.repository.LibraryRepository.getItemsCounter
 import domain.LibraryService
 import data.Position
-import data.entites.items.LibraryItem
-import data.entites.items.book.BookImpl
-import data.entites.items.disk.DiskImpl
-import data.entites.items.newspaper.NewspaperImpl
-import data.entites.items.newspaper_with_month.Month.JANUARY
-import data.entites.items.newspaper_with_month.NewspaperWithMonthImpl
+import data.entites.library.items.LibraryItem
+import data.entites.library.items.book.BookImpl
+import data.entites.library.items.disk.DiskImpl
+import data.entites.library.items.newspaper.NewspaperImpl
+import data.entites.library.items.newspaper_with_month.Month.JANUARY
+import data.entites.library.items.newspaper_with_month.NewspaperWithMonthImpl
 import presentation.start_console.showConsoleStartLibraryUI
 
 fun main() {

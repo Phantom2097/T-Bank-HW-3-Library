@@ -1,4 +1,4 @@
-package data.entites.items.newspaper_with_month
+package data.entites.library.items.newspaper_with_month
 
 interface NewspaperWithMonth {
     var issueMonth: Month
@@ -21,5 +21,5 @@ enum class Month(private val month: String) {
 
     fun getMonth(): String = month
 
-    fun getMonthFromNumber(num: Int): String = (entries.getOrNull(num - 1)?: UNKNOWN).month
+    //fun getMonthFromNumber(num: Int): String = (entries.getOrNull(num - 1)?: UNKNOWN).month
 }

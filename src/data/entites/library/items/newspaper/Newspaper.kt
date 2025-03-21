@@ -1,4 +1,4 @@
-package data.entites.items.newspaper
+package data.entites.library.items.newspaper
 
 internal interface Newspaper {
     var issueNumber: Int?

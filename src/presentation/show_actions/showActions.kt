@@ -1,15 +1,9 @@
 package presentation.show_actions
 
-import data.entites.Readable
-import data.entites.Showable
+import data.entites.library.Readable
+import data.entites.library.Showable
 
-internal fun <T> showActions(item: T): Boolean where T : Readable, T : Showable {
-//    if ((num <= 0 || num > items.size)) {
-//        println(ANSI_YELLOW + "Неверный порядковый номер\n" + ANSI_CYAN + "\tПопробуйте ещё раз\n" + ANSI_RESET)
-//        return false
-//    }
-//    val currentItem = items[num - 1]
-
+fun <T> showActions(item: T): Boolean where T : Readable, T : Showable {
     while (true) {
         showActionsList()
 
@@ -18,7 +12,7 @@ internal fun <T> showActions(item: T): Boolean where T : Readable, T : Showable 
     }
 }
 
-private fun showActionsList() {
+fun showActionsList() {
     println(
         """
             |    1 - Взять домой 
