@@ -3,14 +3,23 @@ package presentation.show_manager
 import presentation.colors.Colors.ANSI_GREEN
 import presentation.colors.Colors.ANSI_RESET
 import presentation.colors.Colors.ANSI_YELLOW
+import presentation.show_manager.InvalidSelectShop.INVALID_INDEX
 
+@Deprecated("Заменил на дженерик функцию showMenuForSelection")
 fun showShops() {
     while (true) {
         textForShowShops()
         val num = getShopNumber()
-        if (num == -1) {
-            println("$ANSI_GREEN*Неверное число*$ANSI_RESET")
-            println(ANSI_YELLOW + "Попробуйте ещё раз\n" + ANSI_RESET)
+        if (num == INVALID_INDEX) {
+            val message = buildString {
+                append(ANSI_GREEN)
+                append("*Неверное число*\n")
+                append(ANSI_YELLOW)
+                append("Попробуйте ещё раз\n")
+                append(ANSI_RESET)
+            }
+
+            println(message)
             continue
         }
         val exit = selectShop(num)
@@ -29,5 +38,9 @@ private fun textForShowShops() {
 }
 
 private fun getShopNumber(): Int {
-    return readlnOrNull()?.toIntOrNull() ?: -1
+    return readlnOrNull()?.toIntOrNull() ?: INVALID_INDEX
+}
+
+private object InvalidSelectShop {
+    const val INVALID_INDEX = -1
 }

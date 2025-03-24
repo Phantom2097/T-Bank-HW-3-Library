@@ -59,4 +59,3 @@ open class NewspaperImpl(
         return "Выпуск: ${issueNumber ?: "*неизвестно*"} газеты ${item.name} с id: ${item.id} доступен: $tempAvailability\n"
     }
 }
-

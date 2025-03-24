@@ -3,17 +3,25 @@ package presentation.show_digitize
 import presentation.colors.Colors.ANSI_GREEN
 import presentation.colors.Colors.ANSI_RESET
 import presentation.colors.Colors.ANSI_YELLOW
+import presentation.show_digitize.InvalidGetDigitizeType.INVALID_INDEX
 
+@Deprecated("Заменил на дженерик функцию showMenuForSelection")
 fun showStartDigitize() {
     while (true) {
         textForShowStartDigitize()
 
-
         val num = getDigitizeType()
 
-        if (num == -1) {
-            println("$ANSI_GREEN*Неверное число*$ANSI_RESET")
-            println(ANSI_YELLOW + "Попробуйте ещё раз\n" + ANSI_RESET)
+        if (num == INVALID_INDEX) {
+            val message = buildString {
+                append(ANSI_GREEN)
+                append("*Неверное число*\n")
+                append(ANSI_YELLOW)
+                append("Попробуйте ещё раз\n")
+                append(ANSI_RESET)
+            }
+
+            println(message)
             continue
         }
 
@@ -23,7 +31,7 @@ fun showStartDigitize() {
 }
 
 private fun getDigitizeType(): Int {
-    return readlnOrNull()?.toIntOrNull() ?: -1
+    return readlnOrNull()?.toIntOrNull() ?: INVALID_INDEX
 }
 
 private fun textForShowStartDigitize() {
@@ -34,4 +42,8 @@ private fun textForShowStartDigitize() {
             3 - Показать оцифрованные предметы
             4 - Выйти в главное меню
     """.trimIndent())
+}
+
+private object InvalidGetDigitizeType {
+    const val INVALID_INDEX = -1
 }

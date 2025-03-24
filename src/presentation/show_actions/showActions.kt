@@ -25,4 +25,3 @@ fun showActionsList() {
     """.trimMargin()
     )
 }
-

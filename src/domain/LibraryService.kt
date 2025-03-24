@@ -15,6 +15,4 @@ class LibraryService {
             item.availability = newAvailability
         }
     }
-
-
 }

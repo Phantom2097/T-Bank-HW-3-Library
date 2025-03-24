@@ -1,17 +1,19 @@
 package presentation.main
 
+import data.Position
+import data.entites.library.items.LibraryItem
+import data.entites.library.items.book.BookImpl
+import data.entites.library.items.disk.DiskImpl
+import data.entites.library.items.disk.Type.CD
+import data.entites.library.items.disk.Type.DVD
+import data.entites.library.items.newspaper.NewspaperImpl
+import data.entites.library.items.newspaper_with_month.Month.JANUARY
+import data.entites.library.items.newspaper_with_month.NewspaperWithMonthImpl
 import data.repository.LibraryRepository.addItemBook
 import data.repository.LibraryRepository.addItemDisk
 import data.repository.LibraryRepository.addItemNewspaper
 import data.repository.LibraryRepository.getItemsCounter
 import domain.LibraryService
-import data.Position
-import data.entites.library.items.LibraryItem
-import data.entites.library.items.book.BookImpl
-import data.entites.library.items.disk.DiskImpl
-import data.entites.library.items.newspaper.NewspaperImpl
-import data.entites.library.items.newspaper_with_month.Month.JANUARY
-import data.entites.library.items.newspaper_with_month.NewspaperWithMonthImpl
 import presentation.start_console.showConsoleStartLibraryUI
 
 fun main() {
@@ -166,7 +168,7 @@ private fun createDisks(service: LibraryService) {
             service
 
         ).apply {
-            type = "DVD"
+            type = DVD
         })
 
     addItemDisk(
@@ -179,7 +181,7 @@ private fun createDisks(service: LibraryService) {
             service
 
         ).apply {
-            type = "CD"
+            type = CD
         })
 
     addItemDisk(
@@ -204,7 +206,6 @@ private fun createDisks(service: LibraryService) {
                 position = Position.HOME
             ),
             service
-
         )
     )
 }

@@ -14,7 +14,7 @@ fun selectShop(shopNumber: Int): Boolean {
         3 -> goToShop(DiskShop)
         4 -> return true
         else -> {
-            println(ANSI_YELLOW + "Попробуйте ещё раз\n" + ANSI_RESET)
+            println("${ANSI_YELLOW}Попробуйте ещё раз\n$ANSI_RESET")
             return false
         }
     }

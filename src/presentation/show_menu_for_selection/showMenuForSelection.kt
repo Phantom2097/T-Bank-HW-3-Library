@@ -1,15 +1,18 @@
-package presentation.show_manager
+package presentation.show_menu_for_selection
 
-import data.entites.shop.Shop
 import presentation.colors.Colors.ANSI_GREEN
 import presentation.colors.Colors.ANSI_RESET
 import presentation.colors.Colors.ANSI_YELLOW
-import presentation.show_manager.GoToShopConsts.INVALID_INDEX
+import presentation.show_menu_for_selection.InvalidMenuType.INVALID_INDEX
 
 
-fun <T> goToShop(shop: Shop<T>) {
+fun showMenuForSelection(
+    menuMessage: String,
+    nextAction: (Int) -> Boolean) {
     while (true) {
-        val num = getItemCount() ?: return
+        println(menuMessage)
+
+        val num = getIndex()
 
         if (num == INVALID_INDEX) {
             val message = buildString {
@@ -24,11 +27,15 @@ fun <T> goToShop(shop: Shop<T>) {
             continue
         }
 
-        getShopItem(shop, num)
-        return
+        val exit = nextAction(num)
+        if (exit) return
     }
 }
 
-private object GoToShopConsts {
+private fun getIndex(): Int {
+    return readlnOrNull()?.toIntOrNull() ?: INVALID_INDEX
+}
+
+private object InvalidMenuType {
     const val INVALID_INDEX = -1
 }

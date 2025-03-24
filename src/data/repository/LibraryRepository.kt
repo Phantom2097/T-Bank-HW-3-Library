@@ -3,6 +3,7 @@ package data.repository
 import data.entites.library.items.book.BookImpl
 import data.entites.library.items.disk.DiskImpl
 import data.entites.library.items.newspaper.NewspaperImpl
+import data.repository.LibraryRepository.LibraryRepositoryConsts.START_LIBRARY_ITEM_INDEX
 import domain.item_mappers.digitize.DigitizationOffice
 import presentation.colors.Colors.ANSI_CYAN
 import presentation.colors.Colors.ANSI_RED
@@ -17,7 +18,7 @@ object LibraryRepository {
     // Оцифрованные предметы
     private val _digitizeSet by lazy { LibraryDigitizeMutableSet<DigitizationOffice.DigitalItem>() }
 
-    private var itemsCounter = 0
+    private var itemsCounter = START_LIBRARY_ITEM_INDEX
 
     // Book
     fun addItemBook(book: BookImpl) { _booksList.add(book) }
@@ -54,7 +55,12 @@ object LibraryRepository {
 
     inline fun <reified T> getItem(items: List<T>, num: Int): T? {
         return items.getOrElse(num) {
-            println(ANSI_YELLOW + "Неверный порядковый номер\n" + ANSI_CYAN + "\tПопробуйте ещё раз\n" + ANSI_RESET)
+            val message = StringBuilder().apply {
+                append("${ANSI_YELLOW}Неверный порядковый номер\n")
+                append("\t${ANSI_CYAN}Попробуйте ещё раз\n$ANSI_RESET")
+            }.toString()
+
+            println( message )
             null
         }
     }
@@ -65,5 +71,9 @@ object LibraryRepository {
     fun getDigitizeItems(): List<DigitizationOffice.DigitalItem> = _digitizeSet.toList().ifEmpty {
         println(ANSI_RED + "На данный момент в библиотеке нет ни одного оцифрованного предмета 🤷‍♂️\n" + ANSI_RESET)
         emptyList()
+    }
+
+    private object LibraryRepositoryConsts {
+        const val START_LIBRARY_ITEM_INDEX = 0
     }
 }

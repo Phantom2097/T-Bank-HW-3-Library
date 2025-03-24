@@ -38,7 +38,15 @@ fun goToDigitize(itemType: Int): Boolean {
 
         4 -> true
         else -> {
-            println(ANSI_YELLOW + "Неизвестная команда\n" + ANSI_CYAN + "\tПопробуйте ещё раз\n" + ANSI_RESET)
+            val message = buildString {
+                append(ANSI_YELLOW)
+                append("Неизвестная команда\n")
+                append(ANSI_CYAN)
+                append("\tПопробуйте ещё раз\n")
+                append(ANSI_RESET)
+            }
+
+            println(message)
             false
         }
     }

@@ -21,8 +21,14 @@ class NewspaperWithMonthImpl(
         val tempAvailability = if (item.availability) "Да" else "Нет"
         val tempMonth = issueMonth.getMonth()
         val tempIssueNumber = issueNumber ?: "*неизвестно*"
-        return "Выпуск: $tempIssueNumber газеты ${item.name}" +
-                ANSI_BLUE + " за $tempMonth" + ANSI_RESET +
-                " с id: ${item.id} доступен: $tempAvailability\n"
+
+        val resultMessage = buildString {
+            append("Выпуск: $tempIssueNumber газеты ${item.name}")
+            append("$ANSI_BLUE за $tempMonth$ANSI_RESET")
+            append(" с id: ${item.id} доступен: $tempAvailability\n")
+        }
+
+        return resultMessage
+
     }
 }

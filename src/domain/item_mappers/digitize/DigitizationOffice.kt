@@ -2,15 +2,20 @@ package domain.item_mappers.digitize
 
 import data.entites.library.Showable
 import data.entites.library.items.book.BookImpl
-import data.entites.library.items.disk.Disk
 import data.entites.library.items.newspaper.NewspaperImpl
+import domain.item_mappers.digitize.DigitizationOffice.DigitalType.CD
 import presentation.colors.Colors.ANSI_PURPLE
 import presentation.colors.Colors.ANSI_RESET
 
 sealed interface DigitizationOffice {
-    data class DigitalItem(val item: Showable, private val type: String? = "CD"): Showable {
+    data class DigitalItem(val item: Showable, private val type: DigitalType = CD): Showable {
         override fun briefInformation(): String {
-            return item.briefInformation() + ANSI_PURPLE + "\n\t\t**Оцифрована на CD**" + ANSI_RESET
+            return buildString {
+                append(item.briefInformation())
+                append(ANSI_PURPLE)
+                append("\n\t\t**Оцифрована на ${type.getDigitalType()}**")
+                append(ANSI_RESET)
+            }
         }
 
         override fun fullInformation(): String {
@@ -18,14 +23,18 @@ sealed interface DigitizationOffice {
         }
 
         override fun toString(): String {
-            return ANSI_PURPLE + "Оцифрованный предмет библиотеки, тип диска $type:\n" + ANSI_RESET +
-                    item.fullInformation()
+            return buildString {
+                append(ANSI_PURPLE)
+                append("Оцифрованный предмет библиотеки, тип диска $type:\n")
+                append(ANSI_RESET)
+                append(item.fullInformation())
+            }
         }
     }
     class DigitizeBook(
         private val book: BookImpl,
-        override var type: String? = "CD"
-    ) : DigitizationOffice, Disk {
+        private var type: DigitalType = CD
+    ) : DigitizationOffice {
         override fun toDigitize(): DigitalItem {
             return DigitalItem(book, type)
         }
@@ -33,11 +42,17 @@ sealed interface DigitizationOffice {
 
     class DigitizeNewspaper(
         private val newspaper: NewspaperImpl,
-        override var type: String? = "CD"
-    ) : DigitizationOffice, Disk {
+        private var type: DigitalType = CD
+    ) : DigitizationOffice {
         override fun toDigitize(): DigitalItem {
             return DigitalItem(newspaper, type)
         }
+    }
+
+    enum class DigitalType(private val type: String) {
+        CD("CD");
+
+        fun getDigitalType() = type
     }
 
     fun toDigitize(): DigitalItem = when (this) {
@@ -45,6 +60,3 @@ sealed interface DigitizationOffice {
         is DigitizeNewspaper -> this.toDigitize()
     }
 }
-
-
-

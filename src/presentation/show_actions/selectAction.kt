@@ -5,10 +5,11 @@ import data.entites.library.Showable
 import presentation.colors.Colors.ANSI_CYAN
 import presentation.colors.Colors.ANSI_RESET
 import presentation.colors.Colors.ANSI_YELLOW
+import presentation.show_actions.SelectActionConsts.INVALID_NUMBER
 
 fun <T> selectAction(currentItem: T): Boolean? where T : Showable, T : Readable {
     currentItem.apply {
-        when (readlnOrNull()?.toIntOrNull() ?: -1) {
+        when (readlnOrNull()?.toIntOrNull() ?: INVALID_NUMBER) {
             1 -> {
                 println(takeToHome())
                 return false
@@ -32,4 +33,8 @@ fun <T> selectAction(currentItem: T): Boolean? where T : Showable, T : Readable 
         }
     }
     return null
+}
+
+private object SelectActionConsts {
+    const val INVALID_NUMBER = -1
 }

@@ -2,7 +2,7 @@ package data.entites.library.items
 
 import data.Position
 
-class LibraryItem (
+data class LibraryItem (
     val name: String,
     val id: Int,
     var availability: Boolean = true,

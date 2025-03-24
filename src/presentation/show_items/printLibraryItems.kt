@@ -14,10 +14,15 @@ fun printLibraryItems(itemsType: Int) {
         2 -> selectItem { getNewspapersInLibrary() }
         3 -> selectItem { getDisksInLibrary() }
         else -> {
-            println(ANSI_GREEN + "*Неверный номер действия*\n" +
-                    ANSI_YELLOW + "Попробуйте ещё раз" + ANSI_RESET)
+            val message = buildString {
+                append(ANSI_GREEN)
+                append("*Неверный номер действия*\n")
+                append(ANSI_YELLOW)
+                append("Попробуйте ещё раз")
+                append(ANSI_RESET)
+            }
+
+            println(message)
         }
     }
 }
-
-

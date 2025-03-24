@@ -2,7 +2,6 @@ package presentation.start_console
 
 import presentation.show_items.printLibraryItems
 
-
 internal fun showConsoleStartLibraryUI() {
     while (true) {
         textForShowLibraryItems()
@@ -25,4 +24,3 @@ private fun textForShowLibraryItems() {
             """.trimIndent()
     )
 }
-
