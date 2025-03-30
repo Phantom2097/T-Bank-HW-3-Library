@@ -1,27 +1,18 @@
 package presentation.show_actions
 
-import data.entites.Readable
-import data.entites.Showable
-import presentation.colors.Colors.ANSI_CYAN
-import presentation.colors.Colors.ANSI_RESET
-import presentation.colors.Colors.ANSI_YELLOW
+import data.entites.library.Readable
+import data.entites.library.Showable
 
-internal fun <T> showActions(num: Int, items: List<T>): Boolean where T : Readable, T : Showable {
-    if ((num <= 0 || num > items.size)) {
-        println(ANSI_YELLOW + "Неверный порядковый номер\n" + ANSI_CYAN + "\tПопробуйте ещё раз\n" + ANSI_RESET)
-        return false
-    }
-    val currentItem = items[num - 1]
-
+fun <T> showActions(item: T): Boolean where T : Readable, T : Showable {
     while (true) {
         showActionsList()
 
-        val exit = selectAction(currentItem) ?: continue
+        val exit = selectAction(item) ?: continue
         return exit
     }
 }
 
-private fun showActionsList() {
+fun showActionsList() {
     println(
         """
             |    1 - Взять домой 
@@ -34,4 +25,3 @@ private fun showActionsList() {
     """.trimMargin()
     )
 }
-

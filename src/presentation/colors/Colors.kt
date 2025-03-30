@@ -7,4 +7,5 @@ object Colors {
     const val ANSI_YELLOW = "\u001B[33m"
     const val ANSI_BLUE = "\u001B[34m"
     const val ANSI_CYAN = "\u001B[36m"
+    const val ANSI_PURPLE = "\u001B[35m"
 }

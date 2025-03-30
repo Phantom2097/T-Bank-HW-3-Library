@@ -1,4 +1,4 @@
-package data.entites
+package data.entites.library
 
 interface Showable {
     fun briefInformation(): String

@@ -1,10 +1,11 @@
-package data.entites.items.disk
+package data.entites.library.items.disk
 
-import data.LibraryService
+import domain.LibraryService
 import data.Position
-import data.entites.Showable
-import data.entites.Readable
-import data.entites.items.LibraryItem
+import data.entites.library.Showable
+import data.entites.library.Readable
+import data.entites.library.items.LibraryItem
+import data.entites.library.items.disk.Type.UNKNOWN
 import presentation.colors.Colors.ANSI_GREEN
 import presentation.colors.Colors.ANSI_RESET
 
@@ -16,7 +17,7 @@ class DiskImpl(
     Readable,
     Showable {
 
-    override var type: String? = null
+    override var type: Type = UNKNOWN
 
     private val name = item.name
 
@@ -58,6 +59,6 @@ class DiskImpl(
 
     override fun toString(): String {
         val tempAvailability = if (item.availability) "Да" else "Нет"
-        return "${type ?: "*Тип диска неизвестен*"} $name доступен: $tempAvailability\n"
+        return "${type.getDiskType()} $name доступен: $tempAvailability\n"
     }
 }

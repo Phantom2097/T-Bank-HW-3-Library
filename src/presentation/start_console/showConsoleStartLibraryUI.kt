@@ -2,7 +2,6 @@ package presentation.start_console
 
 import presentation.show_items.printLibraryItems
 
-
 internal fun showConsoleStartLibraryUI() {
     while (true) {
         textForShowLibraryItems()
@@ -15,12 +14,13 @@ internal fun showConsoleStartLibraryUI() {
 private fun textForShowLibraryItems() {
     println(
         """
-            Введите число, чтобы посмотреть соответствующую подборку в библиотеке
+            Введите число, для дальнейших действий
                 1 - Посмотреть книги
                 2 - Посмотреть газеты
                 3 - Посмотреть диски
-                4 - Выход из меню библиотеки
+                4 - Управление менеджером
+                5 - Кабинет оцифровки
+                6 - Выход из меню библиотеки
             """.trimIndent()
     )
 }
-
